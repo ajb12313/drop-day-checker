@@ -9,6 +9,8 @@
         h1 { font-size: 2.5em; margin-bottom: 10px; }
         .date { font-size: 1.8em; font-weight: bold; margin-bottom: 20px; }
         .status { font-size: 3em; font-weight: bold; margin-top: 20px; }
+        .gif-container { margin-top: 50px; }
+        img { max-width: 100%; height: auto; }
     </style>
 </head>
 <body>
@@ -21,7 +23,12 @@
     <!-- Display the drop day status -->
     <div class="status" id="status">Loading...</div>
 
-    <!-- JavaScript moved to ensure it loads after the page is ready -->
+    <!-- GIF Section -->
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/XEJXmehDYwTjy/giphy.gif" alt="Naruto eating ramen GIF">
+    </div>
+
+    <!-- JavaScript to handle the drop day logic -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Updated drop days: January 15, January 24, January 29
