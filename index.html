@@ -7,26 +7,27 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background */
-            color: #333;
+            background-color: #2a3d66; /* Darker background color for contrast */
+            color: #fff; /* White text for better contrast */
             text-align: center;
             margin: 0;
             padding: 0;
         }
-        
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
-            color: #007acc; /* Blue text */
+            color: #fff; /* White text */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Slight shadow for better visibility */
         }
-        
+
         .date {
             font-size: 1.8em;
             font-weight: bold;
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #ffffff; /* White background for the date box */
-            border: 3px solid #007acc; /* Blue border */
+            background-color: #007acc; /* Blue background for the date box */
+            border: 3px solid #005f8f; /* Darker blue border */
             display: inline-block;
             border-radius: 8px; /* Rounded corners */
         }
@@ -35,7 +36,7 @@
             font-size: 3em;
             font-weight: bold;
             margin-top: 20px;
-            color: #007acc;
+            color: #fff; /* White text */
         }
 
         .gif-container {
@@ -48,7 +49,7 @@
             border-radius: 10px; /* Rounded corners for the GIF */
         }
 
-        /* Additional styling for page layout */
+        /* Center the content box and add a subtle shadow */
         .content {
             max-width: 800px;
             margin: 0 auto;
@@ -58,10 +59,12 @@
             border-radius: 10px;
         }
 
-        .footer {
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #888;
+        /* Add the logo in the bottom left */
+        .logo {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 150px;
         }
     </style>
 </head>
@@ -83,9 +86,9 @@
         </div>
     </div>
 
-    <!-- Footer with copyright text -->
-    <div class="footer">
-        <p>Drop Day Checker &copy; 2025</p>
+    <!-- Logo at the bottom left -->
+    <div class="logo">
+        <img src="https://www.odysseyvillage.com/careers/logo.png" alt="Flint Odyssey House Logo">
     </div>
 
     <!-- JavaScript to handle the drop day logic -->
