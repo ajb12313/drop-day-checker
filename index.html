@@ -36,8 +36,15 @@
             font-size: 3em;
             font-weight: bold;
             margin-top: 20px;
-            color: #ffcc00; /* Yellow text for drop day status */
             text-decoration: underline; /* Underline the Yes/No text */
+        }
+
+        .status.yes {
+            color: #28a745; /* Green for "Yes" */
+        }
+
+        .status.no {
+            color: #dc3545; /* Red for "No" */
         }
 
         .gif-container {
@@ -123,10 +130,14 @@
             if (dropDays.includes(todayISO)) {
                 // If it's a drop day
                 status.textContent = "Yes";
+                status.classList.add("yes");
+                status.classList.remove("no");
                 gif.src = "https://media.tenor.com/_bsFPWDMF64AAAAM/nodding-crossed-arms.gif"; // Drop day GIF
             } else {
                 // If it's NOT a drop day
                 status.textContent = "No";
+                status.classList.add("no");
+                status.classList.remove("yes");
                 gif.src = "https://media.tenor.com/WaQYXtfwj4IAAAAM/anya-forger-no.gif"; // Not a drop day GIF
             }
         });
