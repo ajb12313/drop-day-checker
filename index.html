@@ -6,16 +6,17 @@
     <title>Drop Day Checker</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        h1 { font-size: 2.5em; }
-        .date { font-size: 1.5em; margin: 20px 0; }
-        .status { font-size: 3em; font-weight: bold; margin: 20px 0; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .date { font-size: 1.8em; font-weight: bold; margin-bottom: 20px; }
+        .status { font-size: 3em; font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Is Today a Drop Day?</h1>
-    
-    <!-- Display the formatted date and day of the week -->
+    <!-- Display the formatted date at the top -->
     <div class="date" id="dateDisplay">Loading date...</div>
+    
+    <!-- Header for drop day check -->
+    <h1>Is Today a Drop Day?</h1>
 
     <!-- Display the drop day status -->
     <div class="status" id="status">Loading...</div>
@@ -39,12 +40,7 @@
         const date = today.getDate();
         const year = today.getFullYear();
         
-        // Display the formatted date on the page
+        // Display the formatted date at the top of the page
         document.getElementById("dateDisplay").textContent = `${dayOfWeek}, ${month} ${date}, ${year}`;
 
-        // Check if today is a drop day and display the result
-        const status = document.getElementById("status");
-        status.textContent = dropDays.includes(todayISO) ? "Yes" : "No";
-    </script>
-</body>
-</html>
+        // Check if today is a drop
