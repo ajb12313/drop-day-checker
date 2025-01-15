@@ -7,17 +7,44 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
         h1 { font-size: 2.5em; }
+        .date { font-size: 1.5em; margin: 20px 0; }
         .status { font-size: 3em; font-weight: bold; margin: 20px 0; }
     </style>
 </head>
 <body>
     <h1>Is Today a Drop Day?</h1>
+    
+    <!-- Display the formatted date and day of the week -->
+    <div class="date" id="dateDisplay">Loading date...</div>
+
+    <!-- Display the drop day status -->
     <div class="status" id="status">Loading...</div>
+
     <script>
-        const dropDays = ["2025-01-15", "2025-01-24", "2025-01-29"]; // Replace with your drop days
-        const today = new Date().toISOString().split("T")[0];
+        // Updated drop days: January 15, January 24, January 29
+        const dropDays = ["2025-01-15", "2025-01-24", "2025-01-29"]; 
+        
+        // Get today's date object
+        const today = new Date();
+        
+        // Format today's date as YYYY-MM-DD for comparison
+        const todayISO = today.toISOString().split("T")[0];
+
+        // Generate the full date display (e.g., Wednesday, January 15, 2025)
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const dayOfWeek = dayNames[today.getDay()];
+        const month = monthNames[today.getMonth()];
+        const date = today.getDate();
+        const year = today.getFullYear();
+        
+        // Display the formatted date on the page
+        document.getElementById("dateDisplay").textContent = `${dayOfWeek}, ${month} ${date}, ${year}`;
+
+        // Check if today is a drop day and display the result
         const status = document.getElementById("status");
-        status.textContent = dropDays.includes(today) ? "Yes" : "No";
+        status.textContent = dropDays.includes(todayISO) ? "Yes" : "No";
     </script>
 </body>
 </html>
