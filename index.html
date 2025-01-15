@@ -25,7 +25,8 @@
 
     <!-- GIF Section -->
     <div class="gif-container">
-        <img src="https://media.tenor.com/Ekh0CfC8_xkAAAAM/naruto-ramen.gif" alt="Naruto eating ramen GIF">
+        <!-- GIF will change based on whether it's a drop day or not -->
+        <img id="dropDayGif" src="" alt="Drop Day GIF">
     </div>
 
     <!-- JavaScript to handle the drop day logic -->
@@ -54,7 +55,17 @@
 
             // Check if today is a drop day and display the result
             const status = document.getElementById("status");
-            status.textContent = dropDays.includes(todayISO) ? "Yes" : "No";
+            const gif = document.getElementById("dropDayGif");
+            
+            if (dropDays.includes(todayISO)) {
+                // If it's a drop day
+                status.textContent = "Yes";
+                gif.src = "https://media.tenor.com/_bsFPWDMF64AAAAM/nodding-crossed-arms.gif"; // Drop day GIF
+            } else {
+                // If it's NOT a drop day
+                status.textContent = "No";
+                gif.src = "https://media.tenor.com/WaQYXtfwj4IAAAAM/anya-forger-no.gif"; // Not a drop day GIF
+            }
         });
     </script>
 </body>
