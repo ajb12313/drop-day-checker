@@ -5,28 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drop Day Checker</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .date { font-size: 1.8em; font-weight: bold; margin-bottom: 20px; }
-        .status { font-size: 3em; font-weight: bold; margin-top: 20px; }
-        .gif-container { margin-top: 50px; }
-        img { max-width: 100%; height: auto; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #007acc; /* Blue text */
+        }
+        
+        .date {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff; /* White background for the date box */
+            border: 3px solid #007acc; /* Blue border */
+            display: inline-block;
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        .status {
+            font-size: 3em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #007acc;
+        }
+
+        .gif-container {
+            margin-top: 50px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; /* Rounded corners for the GIF */
+        }
+
+        /* Additional styling for page layout */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #888;
+        }
     </style>
 </head>
 <body>
-    <!-- Date moved to the top -->
-    <div class="date" id="dateDisplay">Loading date...</div>
-    
-    <!-- Header for drop day check -->
-    <h1>Is Today a Drop Day?</h1>
+    <div class="content">
+        <!-- Date box with a border -->
+        <div class="date" id="dateDisplay">Loading date...</div>
+        
+        <!-- Header for drop day check -->
+        <h1>Is Today a Drop Day?</h1>
 
-    <!-- Display the drop day status -->
-    <div class="status" id="status">Loading...</div>
+        <!-- Display the drop day status -->
+        <div class="status" id="status">Loading...</div>
 
-    <!-- GIF Section -->
-    <div class="gif-container">
-        <!-- GIF will change based on whether it's a drop day or not -->
-        <img id="dropDayGif" src="" alt="Drop Day GIF">
+        <!-- GIF Section -->
+        <div class="gif-container">
+            <!-- GIF will change based on whether it's a drop day or not -->
+            <img id="dropDayGif" src="" alt="Drop Day GIF">
+        </div>
+    </div>
+
+    <!-- Footer with copyright text -->
+    <div class="footer">
+        <p>Drop Day Checker &copy; 2025</p>
     </div>
 
     <!-- JavaScript to handle the drop day logic -->
