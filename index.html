@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <!-- Display the formatted date at the top -->
+    <!-- Date moved to the top -->
     <div class="date" id="dateDisplay">Loading date...</div>
     
     <!-- Header for drop day check -->
@@ -21,26 +21,8 @@
     <!-- Display the drop day status -->
     <div class="status" id="status">Loading...</div>
 
+    <!-- JavaScript moved to ensure it loads after the page is ready -->
     <script>
-        // Updated drop days: January 15, January 24, January 29
-        const dropDays = ["2025-01-15", "2025-01-24", "2025-01-29"]; 
-        
-        // Get today's date object
-        const today = new Date();
-        
-        // Format today's date as YYYY-MM-DD for comparison
-        const todayISO = today.toISOString().split("T")[0];
-
-        // Generate the full date display (e.g., Wednesday, January 15, 2025)
-        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        const dayOfWeek = dayNames[today.getDay()];
-        const month = monthNames[today.getMonth()];
-        const date = today.getDate();
-        const year = today.getFullYear();
-        
-        // Display the formatted date at the top of the page
-        document.getElementById("dateDisplay").textContent = `${dayOfWeek}, ${month} ${date}, ${year}`;
-
-        // Check if today is a drop
+        document.addEventListener('DOMContentLoaded', function () {
+            // Updated drop days: January 15, January 24, January 29
+            const dropDays = ["2025-01-15", "2025-01
