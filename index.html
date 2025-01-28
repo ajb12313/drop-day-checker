@@ -1,146 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop Day Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #2a3d66; /* Darker background color for contrast */
-            color: #fff; /* White text for general content */
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ff5733; /* Orange color for the header text */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Slight shadow for better visibility */
-        }
-
-        .date {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #007acc; /* Blue background for the date box */
-            border: 3px solid #005f8f; /* Darker blue border */
-            display: inline-block;
-            border-radius: 8px; /* Rounded corners */
-        }
-
-        .status {
-            font-size: 3em;
-            font-weight: bold;
-            margin-top: 20px;
-            text-decoration: underline; /* Underline the Yes/No text */
-        }
-
-        .status.yes {
-            color: #28a745; /* Green for "Yes" */
-        }
-
-        .status.no {
-            color: #dc3545; /* Red for "No" */
-        }
-
-        .gif-container {
-            margin-top: 50px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px; /* Rounded corners for the GIF */
-        }
-
-        /* Center the content box and add a subtle shadow */
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* Add the logo in the bottom left */
-        .logo {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 80px; /* Small logo size */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Drop Day Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2a3d66;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ff5733;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .date {
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #007acc;
+      border: 3px solid #005f8f;
+      display: inline-block;
+      border-radius: 8px;
+    }
+    .status {
+      font-size: 3em;
+      font-weight: bold;
+      margin-top: 20px;
+      text-decoration: underline;
+    }
+    .status.yes {
+      color: #28a745;
+    }
+    .status.no {
+      color: #dc3545;
+    }
+    .gif-container {
+      margin-top: 50px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+    }
+  </style>
 </head>
 <body>
-    <div class="content">
-        <!-- Date box with a border -->
-        <div class="date" id="dateDisplay">Loading date...</div>
-        
-        <!-- Header for drop day check -->
-        <h1>Is Today a Drop Day?</h1>
-
-        <!-- Display the drop day status -->
-        <div class="status" id="status">Loading...</div>
-
-        <!-- GIF Section -->
-        <div class="gif-container">
-            <!-- GIF will change based on whether it's a drop day or not -->
-            <img id="dropDayGif" src="" alt="Drop Day GIF">
-        </div>
+  <div class="content">
+    <div class="date" id="dateDisplay">Loading date...</div>
+    <h1>Is Today a Drop Day?</h1>
+    <div class="status" id="status">Loading...</div>
+    <div class="gif-container">
+      <img id="dropDayGif" src="" alt="Drop Day GIF">
     </div>
-
-    <!-- Logo at the bottom left -->
-    <div class="logo">
-        <img src="https://www.odysseyvillage.com/careers/logo.png" alt="Flint Odyssey House Logo">
-    </div>
-
-    <!-- JavaScript to handle the drop day logic -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Updated drop days: January 15, January 24, January 29
-            const dropDays = ["2025-01-15", "2025-01-24", "2025-01-29"]; 
-            
-            // Get today's date object
-            const today = new Date();
-            
-            // Format today's date as YYYY-MM-DD for comparison
-            const todayISO = today.toISOString().split("T")[0];
-
-            // Generate the full date display (e.g., Wednesday, January 15, 2025)
-            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-            const dayOfWeek = dayNames[today.getDay()];
-            const month = monthNames[today.getMonth()];
-            const date = today.getDate();
-            const year = today.getFullYear();
-            
-            // Display the formatted date at the top of the page
-            document.getElementById("dateDisplay").textContent = `${dayOfWeek}, ${month} ${date}, ${year}`;
-
-            // Check if today is a drop day and display the result
-            const status = document.getElementById("status");
-            const gif = document.getElementById("dropDayGif");
-            
-            if (dropDays.includes(todayISO)) {
-                // If it's a drop day
-                status.textContent = "Yes";
-                status.classList.add("yes");
-                status.classList.remove("no");
-                gif.src = "https://media.tenor.com/_bsFPWDMF64AAAAM/nodding-crossed-arms.gif"; // Drop day GIF
-            } else {
-                // If it's NOT a drop day
-                status.textContent = "No";
-                status.classList.add("no");
-                status.classList.remove("yes");
-                gif.src = "https://media.tenor.com/WaQYXtfwj4IAAAAM/anya-forger-no.gif"; // Not a drop day GIF
-            }
-        });
-    </script>
+  </div>
+  <div class="logo">
+    <img src="https://www.odysseyvillage.com/careers/logo.png" alt="Flint Odyssey House Logo">
+  </div>
+  <script>
+    const obfuscatedDropDays = [
+      "MjAyNS0wMS0yOQ==",
+      "MjAyNS0wMi0wMw==",
+      "MjAyNS0wMi0xNA==",
+      "MjAyNS0wMi0xOQ==",
+      "MjAyNS0wMi0yNA=="
+    ];
+    function decodeDropDays() {
+      return obfuscatedDropDays.map(b64 => atob(b64));
+    }
+    const dropDays = decodeDropDays();
+    document.addEventListener('DOMContentLoaded', function () {
+      const easternTimeString = new Date().toLocaleString("en-US", {
+        timeZone: "America/New_York",
+        hour12: false
+      });
+      const easternTime = new Date(easternTimeString);
+      let y = easternTime.getFullYear();
+      let m = easternTime.getMonth() + 1;
+      let d = easternTime.getDate();
+      if (m < 10) m = "0" + m;
+      if (d < 10) d = "0" + d;
+      const eastISO = `${y}-${m}-${d}`;
+      const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      const dayOfWeek = dayNames[easternTime.getDay()];
+      const monthName = monthNames[easternTime.getMonth()];
+      const formattedDate = `${dayOfWeek}, ${monthName} ${easternTime.getDate()}, ${y}`;
+      document.getElementById("dateDisplay").textContent = formattedDate;
+      const status = document.getElementById("status");
+      const gif = document.getElementById("dropDayGif");
+      if (dropDays.includes(eastISO)) {
+        status.textContent = "Yes";
+        status.classList.add("yes");
+        status.classList.remove("no");
+        gif.src = "https://media.tenor.com/_bsFPWDMF64AAAAM/nodding-crossed-arms.gif";
+      } else {
+        status.textContent = "No";
+        status.classList.add("no");
+        status.classList.remove("yes");
+        gif.src = "https://media.tenor.com/WaQYXtfwj4IAAAAM/anya-forger-no.gif";
+      }
+    });
+  </script>
 </body>
 </html>
