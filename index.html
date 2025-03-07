@@ -4,64 +4,16 @@
   <meta charset="UTF-8">
   <title>Drop Day Checker</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #2a3d66;
-      color: #fff;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #ff5733;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    .date {
-      font-size: 1.8em;
-      font-weight: bold;
-      margin-bottom: 20px;
-      padding: 20px;
-      background-color: #007acc;
-      border: 3px solid #005f8f;
-      display: inline-block;
-      border-radius: 8px;
-    }
-    .status {
-      font-size: 3em;
-      font-weight: bold;
-      margin-top: 20px;
-      text-decoration: underline;
-    }
-    .status.yes {
-      color: #28a745;
-    }
-    .status.no {
-      color: #dc3545;
-    }
-    .gif-container {
-      margin-top: 50px;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-    .logo {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      width: 80px;
-    }
+    body { font-family: Arial, sans-serif; background-color: #2a3d66; color: #fff; text-align: center; margin: 0; padding: 0; }
+    h1 { font-size: 2.5em; margin-bottom: 20px; color: #ff5733; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+    .date { font-size: 1.8em; font-weight: bold; margin-bottom: 20px; padding: 20px; background-color: #007acc; border: 3px solid #005f8f; display: inline-block; border-radius: 8px; }
+    .status { font-size: 3em; font-weight: bold; margin-top: 20px; text-decoration: underline; }
+    .status.yes { color: #28a745; }
+    .status.no { color: #dc3545; }
+    .gif-container { margin-top: 50px; }
+    img { max-width: 100%; height: auto; border-radius: 10px; }
+    .content { max-width: 800px; margin: 0 auto; padding: 20px; background-color: #ffffff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
+    .logo { position: absolute; bottom: 20px; left: 20px; width: 80px; }
   </style>
 </head>
 <body>
@@ -78,20 +30,11 @@
   </div>
   <script>
     const obfuscatedDropDays = [
-      "MjAyNS0wMS0yOQ==",
-      "MjAyNS0wMi0wMw==",
-      "MjAyNS0wMi0xNA==",
-      "MjAyNS0wMi0xOQ==",
-      "MjAyNS0wMi0yNA==",
-      "MjAyNS0zLTA3",
-      "MjAyNS0zLTEw",
-      "MjAyNS0zLTE5",
-      "MjAyNS0zLTI0",
-      "MjAyNS0wNC0wMg==",
-      "MjAyNS0wNC03",
-      "MjAyNS0wNC0xOA==",
-      "MjAyNS0wNC0yMw==",
-      "MjAyNS0wNC0yOA=="
+      "MjAyNS0wMS0yOQ==", "MjAyNS0wMi0wMw==", "MjAyNS0wMi0xNA==",
+      "MjAyNS0wMi0xOQ==", "MjAyNS0wMi0yNA==", "MjAyNS0zLTA3",
+      "MjAyNS0zLTEw", "MjAyNS0zLTE5", "MjAyNS0zLTI0",
+      "MjAyNS0wNC0wMg==", "MjAyNS0wNC03", "MjAyNS0wNC0xOA==",
+      "MjAyNS0wNC0yMw==", "MjAyNS0wNC0yOA=="
     ];
     
     function decodeDropDays() {
@@ -101,7 +44,6 @@
     const dropDays = decodeDropDays();
 
     document.addEventListener('DOMContentLoaded', function () {
-      // ✅ Fix: Get the correct Eastern Time Date (ensures midnight updates)
       const now = new Date();
       const easternTime = new Intl.DateTimeFormat("en-US", {
         timeZone: "America/New_York",
@@ -110,11 +52,13 @@
         day: "2-digit",
       }).format(now);
 
-      // ✅ Format Eastern Time properly (YYYY-MM-DD)
       const [month, day, year] = easternTime.split("/");
       const eastISO = `${year}-${month}-${day}`;
 
-      // ✅ Generate the displayed date format (e.g., "Wednesday, March 7, 2025")
+      // Debugging logs:
+      console.log("Eastern Time Today:", eastISO);
+      console.log("Drop Days List:", dropDays);
+
       const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
       const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -125,7 +69,6 @@
       
       document.getElementById("dateDisplay").textContent = formattedDate;
 
-      // ✅ Compare against drop days list and display result
       const status = document.getElementById("status");
       const gif = document.getElementById("dropDayGif");
 
