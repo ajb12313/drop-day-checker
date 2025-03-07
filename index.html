@@ -93,30 +93,42 @@
       "MjAyNS0wNC0yMw==",
       "MjAyNS0wNC0yOA=="
     ];
+    
     function decodeDropDays() {
       return obfuscatedDropDays.map(b64 => atob(b64));
     }
+    
     const dropDays = decodeDropDays();
+
     document.addEventListener('DOMContentLoaded', function () {
-      const easternTimeString = new Date().toLocaleString("en-US", {
+      // ✅ Fix: Get the correct Eastern Time Date (ensures midnight updates)
+      const now = new Date();
+      const easternTime = new Intl.DateTimeFormat("en-US", {
         timeZone: "America/New_York",
-        hour12: false
-      });
-      const easternTime = new Date(easternTimeString);
-      let y = easternTime.getFullYear();
-      let m = easternTime.getMonth() + 1;
-      let d = easternTime.getDate();
-      if (m < 10) m = "0" + m;
-      if (d < 10) d = "0" + d;
-      const eastISO = `${y}-${m}-${d}`;
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(now);
+
+      // ✅ Format Eastern Time properly (YYYY-MM-DD)
+      const [month, day, year] = easternTime.split("/");
+      const eastISO = `${year}-${month}-${day}`;
+
+      // ✅ Generate the displayed date format (e.g., "Wednesday, March 7, 2025")
       const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
       const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-      const dayOfWeek = dayNames[easternTime.getDay()];
-      const monthName = monthNames[easternTime.getMonth()];
-      const formattedDate = `${dayOfWeek}, ${monthName} ${easternTime.getDate()}, ${y}`;
+
+      const today = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+      const dayOfWeek = dayNames[today.getDay()];
+      const monthName = monthNames[today.getMonth()];
+      const formattedDate = `${dayOfWeek}, ${monthName} ${today.getDate()}, ${today.getFullYear()}`;
+      
       document.getElementById("dateDisplay").textContent = formattedDate;
+
+      // ✅ Compare against drop days list and display result
       const status = document.getElementById("status");
       const gif = document.getElementById("dropDayGif");
+
       if (dropDays.includes(eastISO)) {
         status.textContent = "Yes";
         status.classList.add("yes");
